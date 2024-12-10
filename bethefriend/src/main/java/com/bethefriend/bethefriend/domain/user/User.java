@@ -8,7 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.bethefriend.bethefriend.domain.Activity;
-import com.bethefriend.bethefriend.domain.MessageEntity;
+import com.bethefriend.bethefriend.domain.Message;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -70,13 +70,13 @@ public class User implements UserDetails {
     @JsonManagedReference(value = "voluntario-activities")
     private List<Activity> atividadesComoVoluntario;
 
-    @OneToMany(mappedBy = "remetente")
-    @JsonManagedReference(value = "remetente-message")
-    private List<MessageEntity> mensagensEnviadas;
+    @OneToMany(mappedBy = "sender")
+    @JsonManagedReference(value = "sender-message")
+    private List<Message> sendedMessager;
 
-    @OneToMany(mappedBy = "destinatario")
-    @JsonManagedReference(value = "destinatario-message")
-    private List<MessageEntity> mensagensRecebidas;
+    @OneToMany(mappedBy = "receiver")
+    @JsonManagedReference(value = "receiver-message")
+    private List<Message> receiverMessages;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
