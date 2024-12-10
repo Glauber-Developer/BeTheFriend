@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.bethefriend.bethefriend.domain.ActivityEntity;
+import com.bethefriend.bethefriend.domain.Activity;
 import com.bethefriend.bethefriend.domain.MessageEntity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -64,11 +64,11 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "senior")
     @JsonManagedReference(value = "senior-activities")
-    private List<ActivityEntity> atividadesComoSenior;
+    private List<Activity> atividadesComoSenior;
 
     @OneToMany(mappedBy = "voluntario")
     @JsonManagedReference(value = "voluntario-activities")
-    private List<ActivityEntity> atividadesComoVoluntario;
+    private List<Activity> atividadesComoVoluntario;
 
     @OneToMany(mappedBy = "remetente")
     @JsonManagedReference(value = "remetente-message")
