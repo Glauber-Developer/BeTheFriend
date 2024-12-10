@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+
+  # Be The Friend
+  bethefriend:
+    build:
+      context: ./bethefriend
+      dockerfile: Dockerfile
+    container_name: bethefriend
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://bethefriend-db:5432/bethefriend-db
+      - SPRING_DATASOURCE_USERNAME=user
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_APPLICATION_NAME=bethefriend
+    ports:
+      - "8081:8081"
+    depends_on:
+      - bethefriend-db
+
+  bethefriend-db:
+    image: postgres:latest
+    restart: always
+    container_name: bethefriend-db
+    environment:
+      POSTGRES_DB: bethefriend-db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+
+  bethefriend-front:
+    build:
+      context: ./bethefriend-front
+      dockerfile: Dockerfile
+    container_name: bethefriend-front
+    ports:
+      - "5173:5173"
+    depends_on:
+      - bethefriend
