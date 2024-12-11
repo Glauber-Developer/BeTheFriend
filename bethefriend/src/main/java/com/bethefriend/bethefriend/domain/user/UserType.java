@@ -10,7 +10,7 @@ public enum UserType {
         this.type = type;
     }
 
-    public String getTypeUser() {
+    public String getType() {
         return type;
     }
 }

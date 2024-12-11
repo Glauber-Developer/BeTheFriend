@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface ActivityRepository extends JpaRepository<Activity, Long> {
-    List<Activity> findBySeniorIdOrVoluntarioId(Long userId);
+    List<Activity> findBySeniorIdOrVoluntarioId(Long seniorId, Long voluntarioId);
 }
