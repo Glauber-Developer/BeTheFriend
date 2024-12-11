@@ -17,6 +17,6 @@ public class FindActivityByUser {
     }
 
     public List<Activity> getActivityByUser(Long userId) {
-        return activityRepository.findBySeniorIdOrVoluntarioId(userId);
+        return activityRepository.findBySeniorIdOrVoluntarioId(userId, userId);
     }
 }

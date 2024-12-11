@@ -34,12 +34,12 @@ public class Activity {
     private Long id;
     
     @ManyToOne
-    @JoinColumn(name = "senior_id", nullable = false)
+    @JoinColumn(name = "senior", nullable = false)
     @JsonBackReference(value = "senior-activities")
     private User senior;
 
     @ManyToOne
-    @JoinColumn(name = "voluntario_id", nullable = false)
+    @JoinColumn(name = "voluntario", nullable = false)
     @JsonBackReference(value = "voluntario-activities")
     private User voluntario;
     
