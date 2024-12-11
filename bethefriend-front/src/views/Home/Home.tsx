@@ -2,9 +2,17 @@ import React from "react";
 import logoimage from "/img/Logotipo.png";
 import imagebutton from "/img/bola-botao.png";
 import './Home.css'
-import { MenuBar } from "../components/menu-bar/menu-bar";
+import { MenuBar } from "../../components/menu-bar/menu-bar";
+import { useNavigate } from "react-router-dom";
 
 const HomeView: React.FC = () => {
+   const navigate = useNavigate();
+    const goToLogin = () => {
+    navigate("/login");
+  };
+  const goToRegistration = () => {
+    navigate('/register');
+  };
     return (
         <div className="home-container">
           {/* Menu Superior */}
@@ -25,10 +33,10 @@ const HomeView: React.FC = () => {
                 experiências, aprender juntos e criar memórias.
               </p>
               <div className="buttons">
-                <button className="main-button-entrar">Entrar</button>
-                <button className="main-button-cadastrar">Cadastre-se<img 
+                <button onClick={goToLogin} className="main-button-entrar">Entrar</button>
+                <button onClick={goToRegistration} className="main-button-cadastrar">Cadastre-se<img 
                                                   src={imagebutton}
-                                                  className="button-icon" 
+                                                  className="rosa2" 
                 /></button>
               </div>
             </div>

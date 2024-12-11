@@ -9,15 +9,27 @@ body {
   min-height: 100vh;
   background: linear-gradient(135deg, #fb8075, #9926f0);
   color: white;
+  padding-top: 200px;
 }
 
+.menu-bar {
+  position: fixed;  /* Fixar o menu no topo */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;  /* Garantir que o menu tenha uma camada superior */
+ 
+}
 /* Conteúdo Central */
 .main-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 80px;
+  padding-top: 0px;
+  margin-top: 100px;
+  z-index: 1;
 }
+
 
 /* Parte Esquerda */
 .left-section {
@@ -84,7 +96,7 @@ body {
   background-color: #9926F0;
 }
 
-.button-icon {
+.rosa2 {
   width: 30px;                  
   height: 30px;                 
 }
@@ -100,8 +112,9 @@ body {
 }
 
 .image {
-  max-width: 80%;
+  max-width: 75%;
   height: auto;
+  padding-top: 50px;
   }
 
  
