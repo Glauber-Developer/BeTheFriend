@@ -53,7 +53,7 @@ public class AuthenticationController {
             RegisterDTO.state(), 
             RegisterDTO.country(), 
             RegisterDTO.skills(), 
-            RegisterDTO.type()
+            RegisterDTO.typeUser()
         );
 
         this.userRepository.save(newUser);
