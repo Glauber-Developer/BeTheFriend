@@ -33,7 +33,7 @@ public class MessageController {
         Message newMessage = sendMessageUseCase.sendMessage(sendMessage);
         return ResponseEntity.status(HttpStatus.CREATED).body(newMessage);
     }
-
+    //TODO: Está retornando um array [vazio]
     @GetMapping("/chat")
     public ResponseEntity<List<Message>> getMessagesBetweenUsers(@RequestParam Long userId) {
         return ResponseEntity.ok(findMessagesBetweenUsersUseCase.getMessages(userId));

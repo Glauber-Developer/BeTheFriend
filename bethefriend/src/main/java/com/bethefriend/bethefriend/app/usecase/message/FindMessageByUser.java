@@ -17,6 +17,6 @@ public class FindMessageByUser {
     }
 
     public List<Message> getMessages(Long userId) {
-        return messageRepository.findBySenderIdOrReceiverId(userId);
+        return messageRepository.findBySenderIdOrReceiverId(userId, userId);
     }
 }
