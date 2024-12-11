@@ -1,0 +1,48 @@
+.menu-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(135deg, #fb8075, #9926f0);
+    position: fixed;             
+    top: 0;                      
+    left: 0;                     
+    width: 100%;                 
+    z-index: 1000;               
+    padding: 0px 0; 
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.4);
+  }
+  
+  .logo {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: "Baloo 2", sans-serif;
+    color: white;
+}
+
+.logo:focus {
+    outline: none;
+}
+.logo:hover {
+  cursor: pointer;
+  color: #00000057;
+}
+  
+  .menu-links {
+    display: flex;
+    margin-left: 200px;
+    font-size: 15px;
+    gap: 40px;
+  }
+  
+  .menu-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+  }
+  
+  .menu-links a:hover {
+    color: #00000057;
+  }
