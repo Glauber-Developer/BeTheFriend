@@ -34,12 +34,12 @@ public class Message {
     private Long id;
    
     @ManyToOne
-    @JoinColumn(name = "sender_id", nullable = false)
+    @JoinColumn(name = "sender", nullable = false)
     @JsonBackReference(value = "sender-message")
     private User sender;
 
     @ManyToOne
-    @JoinColumn(name = "receiver_id", nullable = false)
+    @JoinColumn(name = "receiver", nullable = false)
     @JsonBackReference(value = "receiver-message")
     private User receiver;
 
