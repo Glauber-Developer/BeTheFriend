@@ -2,20 +2,14 @@ import React from "react";
 import logoimage from "/img/Logotipo.png";
 import imagebutton from "/img/bola-botao.png";
 import './Home.css'
-import { Button } from "../components/button/button-menu-entrar";
+import { MenuBar } from "../components/menu-bar/menu-bar";
 
 const HomeView: React.FC = () => {
     return (
         <div className="home-container">
           {/* Menu Superior */}
           <header className="menu-bar">
-            <div className="logo">BeTheFriend</div>
-            <nav className="menu-links">
-              <a href="#quem-somos">QUEM SOMOS</a>
-              <a href="#comunidade">COMUNIDADE</a>
-              <a href="#contato">CONTATO</a>
-            </nav>
-            <Button></Button>
+            <MenuBar></MenuBar>
           </header>
            {/* MAIN CONTENT */}
           <main className="main-content">
