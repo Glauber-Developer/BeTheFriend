@@ -28,6 +28,6 @@ public class FindUser {
     }
 
     public List<User> getUsersByType(UserType type) {
-        return userRepository.findByUserType(type);
+        return userRepository.findByType(type);
     }
 }

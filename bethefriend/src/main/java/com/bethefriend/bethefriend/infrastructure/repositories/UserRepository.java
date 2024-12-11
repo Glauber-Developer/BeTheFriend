@@ -12,5 +12,5 @@ import com.bethefriend.bethefriend.domain.user.UserType;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     UserDetails findByEmail(String email);
-    List<User> findByUserType(UserType type);
+    List<User> findByType(UserType type);
 }
