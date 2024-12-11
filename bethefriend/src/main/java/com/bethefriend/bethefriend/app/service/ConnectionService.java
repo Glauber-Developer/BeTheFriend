@@ -3,7 +3,7 @@ package com.bethefriend.bethefriend.app.service;
 
 
 import com.bethefriend.bethefriend.domain.connetion.Connection;
-import com.bethefriend.bethefriend.domain.user.ConnectionStatus;
+import com.bethefriend.bethefriend.domain.connetion.ConnectionStatus;
 import com.bethefriend.bethefriend.domain.user.User;
 import com.bethefriend.bethefriend.domain.user.UserType;
 import com.bethefriend.bethefriend.infrastructure.repositories.ConnectionRepository;
