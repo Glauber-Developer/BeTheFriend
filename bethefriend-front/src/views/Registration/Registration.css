@@ -66,13 +66,13 @@ body {
   .form-box-2,
   .form-box-3 {
       border: 2px solid #9926F0;
-      padding: 1rem; /* Certifique-se de usar o mesmo padding em ambas */
+      padding: 1rem; 
       border-radius: 10px;
       display: flex;
       flex-direction: column;
-      width: 100%; /* Ou defina um tamanho fixo, como 400px */
-      max-width: 600px; /* Limita o tamanho máximo */
-      box-sizing: border-box; /* Garante que largura inclua bordas e padding */
+      width: 100%; 
+      max-width: 600px; 
+      box-sizing: border-box; 
   }
 
   .form-box-3 {
@@ -156,7 +156,7 @@ body {
   }
 
   .box-right h2 {
-    font-family: "inter", cursive;
+    font-family: "inter", sans-serif;
     color: white;
     text-align: center;
     font-size: 20px;
