@@ -1,19 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import './Login.css'
 import imageicon from "/img/bethefriend-icon.png";
 import imageleft from "/img/login-image.png";
 import { MenuBar } from "../../components/menu-bar/menu-bar";
 import { useNavigate } from 'react-router-dom';
+import { login } from "../../services/auth/authService";
 
 const Login: React.FC = () => {
+  const[error, setError] = useState('');
+  const[email, setEmail] = useState('');
+  const[password, setPassword] = useState('');
+ 
   const navigate = useNavigate();
 
     const goToRegistration = () => {
-        navigate('/register');
+        navigate('/auth/register');
     };
-    const goToHomeUser = () => {
-      navigate('/homeuser');
-  };
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      try{
+        await login(email, password);
+        navigate('/homeuser');
+      }
+      catch{
+        setError("credenciais inválidas!");
+      }
+    }
 
     return (       
           <div className="login-container">
@@ -46,19 +58,18 @@ const Login: React.FC = () => {
 
           {/* Formulário */}
           <div className="login-box-2">
-          <form className="login-form">
+          <form onSubmit={handleSubmit} className="login-form">
             <div className="form-group">
               <label htmlFor="email" className="form-label">Email</label>
-              <input type="email" id="email" className="form-input" />
+              <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="email" className="form-input" />
             </div>
             <div className="form-group">
-              <label htmlFor="password" className="form-label">Senha</label>
-              <input type="password" id="password" className="form-input" />
+              <label htmlFor="password"  className="form-label">Senha</label>
+              <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" id="password" className="form-input" />
             </div>
-
-            <a href="/forgot-password" className="forgot-password">Esqueci minha senha</a>
+            {error}
             <div className="login-form-button"> 
-            <button type="submit" onClick={goToHomeUser} className="login-button">Entrar</button>
+            <button type="submit" className="login-button">Entrar</button>
             <button type="button" onClick={goToRegistration} className="signup-button">Cadastre-se</button>
             </div>
           </form>

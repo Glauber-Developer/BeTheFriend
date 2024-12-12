@@ -19,8 +19,8 @@ export function MenuBarUser () {
     const goToProfiles = () => {
         navigate('/profiles');
     };
-    const goToMyActivities = () => {
-        navigate('/myactivities');
+    const goToMyProfile = () => {
+        navigate('/myprofile');
     };
         return(
         <div className="menu-bar">
@@ -36,11 +36,11 @@ export function MenuBarUser () {
                 </a>
                 <a onClick={goToHomeUser}>COMUNIDADE</a>
                 <a onClick={goToHomeUser}>CONTATO</a>
-                <a onClick={goToMyActivities}>
+                <a onClick={goToMyProfile}>
                 <div className="minhas-atividades">
                         <div className="text">
-                            <span>MINHAS</span>
-                            <span>ATIVIDADES</span>
+                            <span>MEU</span>
+                            <span>PERFIL</span>
                         </div>
                     </div>
                 </a>
