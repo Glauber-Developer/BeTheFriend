@@ -6,7 +6,7 @@ export function Button () {
         const navigate = useNavigate();
 
         const goToLogin = () => {
-        navigate("/login");
+        navigate("/auth/login");
   };
     return(
         <div>
