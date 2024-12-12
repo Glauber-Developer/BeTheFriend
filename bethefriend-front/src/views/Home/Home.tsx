@@ -8,10 +8,10 @@ import { useNavigate } from "react-router-dom";
 const HomeView: React.FC = () => {
    const navigate = useNavigate();
     const goToLogin = () => {
-    navigate("/login");
+    navigate("/auth/login");
   };
   const goToRegistration = () => {
-    navigate('/register');
+    navigate('/auth/register');
   };
     return (
         <div className="home-container">
