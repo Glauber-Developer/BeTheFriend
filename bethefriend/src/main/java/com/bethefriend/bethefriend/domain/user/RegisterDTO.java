@@ -1,6 +1,8 @@
 package com.bethefriend.bethefriend.domain.user;
 
-public record RegisterDTO(String state, String country, String password, String email, String name, String skills,  String city, UserType typeUser) {
+import java.util.List;
+
+public record RegisterDTO(String state, String country, String password, String email, String name, List<String> skills,  String city, UserType typeUser) {
         
         public RegisterDTO {
             if (name == null || name.isBlank()) {

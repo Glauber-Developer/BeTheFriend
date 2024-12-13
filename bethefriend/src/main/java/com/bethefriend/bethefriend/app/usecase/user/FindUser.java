@@ -30,4 +30,12 @@ public class FindUser {
     public List<User> getUsersByType(UserType type) {
         return userRepository.findByType(type);
     }
+
+    public List<User> getSeniorsByFilters(UserType type, String city, String state, String country) {
+        return userRepository.findByTypeAndCityAndStateAndCountry(type, city, state, country);
+    }
+
+    public List<User> getVolunteersByFilters(UserType type, String city, String state, String country, List<String> skills) {
+        return userRepository.findVolunteersByTypeAndCityAndStateAndCountryAndSkills(type, city, state, country, skills);
+    }
 }

@@ -49,9 +49,9 @@ public class User implements UserDetails {
     private String city;
     private String state;
     private String country;
-    private String skills;
+    private List<String> skills;
 
-    public User(String name, String email, String password, String city, String state, String country, String skills, UserType type) {
+    public User(String name, String email, String password, String city, String state, String country, List<String> skills, UserType type) {
         this.name = name;
         this.email = email;
         this.password = password;
