@@ -1,10 +1,17 @@
+import { logout } from '../../services/auth/authService';
 import './menu-bar-user.css'
 import imagebutton from "/img/bola-botao-roxo.png";
 import imagebutton2 from "/img/seta-botao.png";
+import imagelogout from "/img/sair.png";
 import { useNavigate } from 'react-router-dom';
 
 
 export function MenuBarUser () {
+    const handleLogout = () => {
+        logout();
+        console.log("User logged out successfully!");
+        navigate('/auth/login');
+    };
     const navigate = useNavigate();
 
     const goToHomeUser = () => {
@@ -34,8 +41,6 @@ export function MenuBarUser () {
                         </div>
                     </div>
                 </a>
-                <a onClick={goToHomeUser}>COMUNIDADE</a>
-                <a onClick={goToHomeUser}>CONTATO</a>
                 <a onClick={goToMyProfile}>
                 <div className="minhas-atividades">
                         <div className="text">
@@ -62,9 +67,15 @@ export function MenuBarUser () {
                                                   className="seta" 
                 /></button>
               </div>
-            </div>    
-
-            
+              <a onClick={handleLogout}>
+                <div className="logout">
+                        <div className="text">
+                        <img src={imagelogout} className="arrow-logout"/>
+                            SAIR
+                        </div>
+                    </div>
+                </a>
+            </div>          
     )
 }
 export default MenuBarUser;
