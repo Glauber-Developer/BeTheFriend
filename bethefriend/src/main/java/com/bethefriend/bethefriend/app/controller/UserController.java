@@ -34,4 +34,21 @@ public class UserController {
     public List<User> getUsersByType(@PathVariable UserType type) {
         return findUserUseCase.getUsersByType(type);
     }
+
+    @GetMapping("/seniors")
+    public List<User> getSeniorsByFilters(
+            @RequestParam(required = false) String city,
+            @RequestParam(required = false) String state,
+            @RequestParam(required = false) String country) {
+        return findUserUseCase.getSeniorsByFilters(UserType.SENIOR, city, state, country);
+    }
+
+    @GetMapping("/volunteers")
+    public List<User> getVolunteersByFilters(
+            @RequestParam(required = false) String city,
+            @RequestParam(required = false) String state,
+            @RequestParam(required = false) String country,
+            @RequestParam(required = false) List<String> skills) {
+        return findUserUseCase.getVolunteersByFilters(UserType.VOLUNTARIO, city, state, country, skills);
+    }
 }
