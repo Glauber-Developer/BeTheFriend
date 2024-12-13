@@ -61,7 +61,7 @@
   flex-grow: 1;
   overflow-y: auto; /* Ativa o scroll vertical */
   margin-bottom: 20px;
-  height: calc(80vh - 180px);
+  height: calc(80vh - 220px);
 }
 /* Estilizando o scroll */
 .chat-messages::-webkit-scrollbar {
