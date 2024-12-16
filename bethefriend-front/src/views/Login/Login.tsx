@@ -23,7 +23,7 @@ const Login: React.FC = () => {
         navigate('/homeuser');
       }
       catch{
-        setError("credenciais inválidas!");
+        setError("Credenciais inválidas!");
       }
     }
 
@@ -67,7 +67,7 @@ const Login: React.FC = () => {
               <label htmlFor="password"  className="form-label">Senha</label>
               <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" id="password" className="form-input" />
             </div>
-            {error}
+            <div className="error">{error}</div>
             <div className="login-form-button"> 
             <button type="submit" className="login-button">Entrar</button>
             <button type="button" onClick={goToRegistration} className="signup-button">Cadastre-se</button>
