@@ -8,7 +8,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.bethefriend.bethefriend.domain.Activity;
-import com.bethefriend.bethefriend.domain.Message;
+import com.bethefriend.bethefriend.domain.message.Message;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -19,6 +20,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -51,6 +53,10 @@ public class User implements UserDetails {
     private String country;
     private List<String> skills;
 
+    @JsonIgnore
+    @Transient
+    private List<GrantedAuthority> authorities;
+    
     public User(String name, String email, String password, String city, String state, String country, List<String> skills, UserType type) {
         this.name = name;
         this.email = email;
