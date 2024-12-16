@@ -13,7 +13,7 @@ body {
     width: 100%;                 
     z-index: 10;               
     padding: 0px 0; 
-    position: fixed;  /* Fixar o menu no topo */
+    position: fixed;
   }
   
   .logo {

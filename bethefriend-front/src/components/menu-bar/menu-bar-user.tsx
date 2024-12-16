@@ -17,6 +17,9 @@ export function MenuBarUser () {
     const goToHomeUser = () => {
         navigate('/homeuser');
     };
+    const goToWhoWeAre = () => {
+        navigate('/whoweare');
+    };
     const goToScheduleActivity = () => {
         navigate('/scheduleactivity');
     };
@@ -33,7 +36,7 @@ export function MenuBarUser () {
         <div className="menu-bar">
             <button className="logo" onClick={goToHomeUser} aria-label="Página inicial">BeTheFriend</button>
             <nav className="menu-links">
-                <a onClick={goToHomeUser}>
+                <a onClick={goToWhoWeAre}>
                     <div className="quem-somos">
                         <div className="text">
                             <span>QUEM</span>
