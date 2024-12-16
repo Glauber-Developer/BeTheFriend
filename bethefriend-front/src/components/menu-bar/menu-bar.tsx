@@ -9,13 +9,14 @@ export function MenuBar () {
     const handleLogoClick = () => {
         navigate('/');
     };
+    const goToWhoWeAre = () => {
+        navigate('/whoweare');
+    };
         return(
         <div className="menu-bar">
             <button className="logo" onClick={handleLogoClick} aria-label="Página inicial">BeTheFriend</button>
             <nav className="menu-links">
-                <a href="#quem-somos">QUEM SOMOS</a>
-                <a href="#comunidade">COMUNIDADE</a>
-                <a href="#contato">CONTATO</a>
+                <a onClick={goToWhoWeAre}>QUEM SOMOS</a>
             </nav>
             <Button></Button>
             </div>    

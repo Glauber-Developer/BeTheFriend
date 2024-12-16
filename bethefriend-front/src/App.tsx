@@ -1,5 +1,5 @@
 import { Route, BrowserRouter as Router, Routes} from 'react-router-dom';
-import HomeView from './views/Home';
+import HomeView from './views/Home/Home';
 import Chat from './views/Chat/Chat';
 import HomeUser from './views/HomeUser/HomeUser';
 import Login from './views/Login/Login';
@@ -8,6 +8,7 @@ import Profiles from './views/Profiles/Profiles';
 import ScheduleActivities from './views/ScheduleActivities/ScheduleActivities';
 import User from './views/User/User';
 import Register from './views/Registration/Registration';
+import WhoWeAre from './views/WhoWeAre/WhoWeAre';
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/profiles" element={<Profiles></Profiles>}/>
             <Route path="/user" element={<User></User>}/>
             <Route path="/myprofile" element={<MyProfile></MyProfile>}/>
+            <Route path="/whoweare" element={<WhoWeAre></WhoWeAre>}/>
         </Routes>
     </Router>
     </>
