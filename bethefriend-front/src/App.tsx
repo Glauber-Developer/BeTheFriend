@@ -18,7 +18,7 @@ function App() {
             <Route path="/auth/login" element={<Login></Login>}/>
             <Route path="/auth/register" element={<Register></Register>}/>
             <Route path="/homeuser" element={<HomeUser></HomeUser>}/>
-            <Route path="/scheduleactivity" element={<ScheduleActivities></ScheduleActivities>}/>
+            <Route path="/scheduleactivity/:userId" element={<ScheduleActivities></ScheduleActivities>}/>
             <Route path="/chat" element={<Chat></Chat>}/>
             <Route path="/profiles" element={<Profiles></Profiles>}/>
             <Route path="/user" element={<User></User>}/>
