@@ -154,4 +154,7 @@
     align-items: center;
     margin-bottom: 1rem;
   }
-  
+  .error {
+    color: #9926f0;
+    font-weight: 600;
+  }
