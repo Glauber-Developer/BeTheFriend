@@ -1,5 +1,6 @@
 package com.bethefriend.bethefriend.app.usecase.user;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.bethefriend.bethefriend.domain.user.User;
@@ -29,5 +30,17 @@ public class FindUser {
 
     public List<User> getUsersByType(UserType type) {
         return userRepository.findByType(type);
+    }
+
+    public List<User> getSeniorsByFilters(UserType type, String city, String state, String country) {
+        return userRepository.findByTypeAndCityAndStateAndCountry(type, city, state, country);
+    }
+
+    public List<User> getVolunteersByFilters(UserType type, String city, String state, String country, List<String> skills) {
+        return userRepository.findVolunteersByTypeAndCityAndStateAndCountryAndSkills(type, city, state, country, skills);
+    }
+
+    public UserDetails getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

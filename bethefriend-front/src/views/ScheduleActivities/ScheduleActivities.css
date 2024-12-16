@@ -1,0 +1,124 @@
+.schedule-container {
+    display: flex; /* Ativa o layout flexbox */
+    justify-content: space-between; /* Coloca os itens nas extremidades (esquerda e direita) */
+    align-items: center; /* Alinha os itens verticalmente no centro (opcional) */
+    width: 100%; /* Define a largura da box (ou defina uma largura fixa, se necessário) */
+    padding: 10px; /* Opcional, para adicionar espaçamento interno */
+    box-sizing: border-box;
+    background-color: #ffffff; /* Exemplo de cor de fundo */
+    margin-top: 400px;
+}
+
+.schedule-box {
+  width: 100%;
+  max-width: 800px;
+  background-color: #EAD5FC;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'inter', sans-serif;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  color: #9926F0;
+}
+
+.icon {
+  font-size: 2rem;
+  margin-right: 10px;
+}
+
+.header-text h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #9926F0;
+  font-family: 'inter', sans-serif;
+}
+
+.header-text h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #9926F0;
+  font-family: 'inter', sans-serif;
+
+}
+
+.label {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-family: 'inter', sans-serif;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: 'inter', sans-serif;
+}
+.input-local {
+  width: 105%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.activity-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+  font-family: 'inter', sans-serif;
+  font-weight: 700;
+}
+
+.activity-button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  background-color: #fff;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'inter', sans-serif;
+  font-weight: 700;
+}
+
+.activity-button.selected {
+  background-color:  #9926F0;
+  color: #fff;
+  font-family: 'inter', sans-serif;
+  font-weight: 700;
+}
+
+.finalize-button {
+  background-color: #9926F0;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 20px;
+  margin-left: 50px;
+  transition: background-color 0.3s;
+  margin-bottom: 700px;
+  font-family: 'inter', sans-serif;
+  font-weight: 700;
+  width: 300px;
+}
+
+.finalize-button:hover {
+  background-color: #7b1bc4;
+}
+.finalize{
+  width: 25px;
+  margin-left: 5px;
+  
+}

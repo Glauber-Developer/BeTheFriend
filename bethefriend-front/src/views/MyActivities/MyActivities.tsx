@@ -1,38 +1,42 @@
 import React from "react";
 import logoimage from "/img/Logotipo.png";
-import imagebutton from "/img/bola-botao.png";
-import './Home.css'
-import { Button } from "../components/button/button-menu-entrar";
+import imagebutton from "/img/bola-botao-roxo.png";
+import imagebutton2 from "/img/seta-botao.png";
+import './MyActivities.css'
+import { MenuBarUser } from "../../components/menu-bar/menu-bar-user";
+import { useNavigate } from "react-router-dom";
 
-const HomeView: React.FC = () => {
+const Activities: React.FC = () => {
+   const navigate = useNavigate();
+    const goToLogin = () => {
+    navigate("/login");
+  };
+  const goToRegistration = () => {
+    navigate('/register');
+  };
     return (
         <div className="home-container">
           {/* Menu Superior */}
           <header className="menu-bar">
-            <div className="logo">BeTheFriend</div>
-            <nav className="menu-links">
-              <a href="#quem-somos">QUEM SOMOS</a>
-              <a href="#comunidade">COMUNIDADE</a>
-              <a href="#contato">CONTATO</a>
-            </nav>
-            <Button></Button>
+            <MenuBarUser></MenuBarUser>
           </header>
            {/* MAIN CONTENT */}
           <main className="main-content">
             {/* LEFT */}
             <div className="left-section">
               <h1 className="title">
-                Be <br />
-                The <br />
-                Friend
+                Seja <br />
+                Bem-vindo ao <br />
+                BeTheFriend
               </h1>
               <p className="description">
-                Nosso propósito é conectar jovens e idosos para compartilhar
-                experiências, aprender juntos e criar memórias.
+              Explore sua comunidade, faça novas amizades e aproveite ao máximo!
               </p>
               <div className="buttons">
-                <button className="main-button-entrar">Entrar</button>
-                <button className="main-button-cadastrar">Cadastre-se<img 
+                <button onClick={goToLogin} className="main-button-chat">Chat<img src={imagebutton2}
+                                                  className="button-icon2" 
+                /></button>
+                <button onClick={goToRegistration} className="main-button-perfis">Perfis<img 
                                                   src={imagebutton}
                                                   className="button-icon" 
                 /></button>
@@ -55,4 +59,4 @@ const HomeView: React.FC = () => {
       );
     };
   
-export default HomeView;
+export default Activities;

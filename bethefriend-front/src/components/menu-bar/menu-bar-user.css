@@ -1,0 +1,144 @@
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+  }
+.menu-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(135deg, #fb8075, #9926f0);
+    position: fixed;             
+    top: 0;                      
+    left: 0;                     
+    width: 100%;                 
+    z-index: 10;               
+    padding: 0px 0; 
+    position: fixed;
+  }
+  
+  .logo {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: "Baloo 2", sans-serif;
+    color: white;
+    margin-left: 30px;
+}
+
+.logo:focus {
+    outline: none;
+}
+.logo:hover {
+  cursor: pointer;
+  color: #00000057;
+}
+  
+  .menu-links {
+    display: flex;
+    margin-left: 100px;
+    font-size: 15px;
+    gap: 45px;
+  }
+  
+  .menu-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+  }
+  
+  .menu-links a:hover {
+    color: #00000057;
+    cursor: pointer;
+  }
+  .menu-button-chat,
+  .menu-button-activities,
+  .menu-button-perfis {
+    display: flex;               
+    align-items: center;          
+    justify-content: center;     
+    font-family: "Baloo 2", sans-serif;
+    padding: 5px 20px;
+    border: none;
+    background-color:  rgb(255, 255, 255);
+    color: #000000;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    gap: 8px;                    
+  }
+  .menu-button-chat:hover,
+  .menu-button-activities:hover,
+  .menu-button-perfis:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  .seta {
+    width: 25px;                  
+    height: 25px;  
+    margin-left: 2px;                  
+  }
+  .button-icon2 {
+    width: 20px;                  
+    height: 20px;     
+    margin-left: 2px;            
+  }
+  .quem-somos .text {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    flex: 1; 
+    padding: 0 0px; 
+  }
+  
+  .quem-somos  .text span {
+    line-height: 1; 
+    text-align: center;
+  }
+
+  .minhas-atividades .text {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    flex: 1; 
+    padding: 0 0px; 
+  }
+  
+  .minhas-atividades .text span {
+    line-height: 1; 
+    text-align: center;
+  }
+  .agendar-atividades .text {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    flex: 1; 
+    padding: 0 0px; 
+  }
+  
+  .agendar-atividades .text span {
+    line-height: 1; 
+    text-align: center;
+  }
+  .arrow-logout {
+    width: 15px;
+    height: 15px;
+  }
+
+  .logout .text {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    flex: 1; 
+    padding: 0 0px; 
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+  }

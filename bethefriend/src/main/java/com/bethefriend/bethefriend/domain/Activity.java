@@ -7,7 +7,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import com.bethefriend.bethefriend.domain.user.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -28,11 +30,11 @@ import lombok.ToString;
 @Entity
 @Table(name = "activities")
 public class Activity {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @ManyToOne
     @JoinColumn(name = "senior", nullable = false)
     @JsonBackReference(value = "senior-activities")
@@ -42,16 +44,25 @@ public class Activity {
     @JoinColumn(name = "voluntario", nullable = false)
     @JsonBackReference(value = "voluntario-activities")
     private User voluntario;
-    
+
     private String title;
-    private LocalDateTime dateHour;
+    private LocalDate date;
+    private LocalTime time;
     private String description;
     private String status;
+    private String activityType;
+    private String locationFormat; 
+    private String meetingLocation; 
 
-    public Activity(String title, String description, LocalDateTime dateHour, User senior, User voluntario) {
+    public Activity(String title, String description, LocalDate date, LocalTime time, String activityType,
+                    String locationFormat, String meetingLocation, User senior, User voluntario) {
         this.title = title;
         this.description = description;
-        this.dateHour = dateHour;
+        this.date = date;
+        this.time = time;
+        this.activityType = activityType;
+        this.locationFormat = locationFormat;
+        this.meetingLocation = meetingLocation;
         this.senior = senior;
         this.voluntario = voluntario;
     }
