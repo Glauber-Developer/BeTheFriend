@@ -1,4 +1,4 @@
-package com.bethefriend.bethefriend.domain;
+package com.bethefriend.bethefriend.domain.message;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

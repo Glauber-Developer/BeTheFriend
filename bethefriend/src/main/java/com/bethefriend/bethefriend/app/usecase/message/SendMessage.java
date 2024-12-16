@@ -2,7 +2,7 @@ package com.bethefriend.bethefriend.app.usecase.message;
 
 import org.springframework.stereotype.Service;
 
-import com.bethefriend.bethefriend.domain.Message;
+import com.bethefriend.bethefriend.domain.message.Message;
 import com.bethefriend.bethefriend.domain.user.User;
 import com.bethefriend.bethefriend.infrastructure.repositories.MessageRepository;
 import com.bethefriend.bethefriend.infrastructure.repositories.UserRepository;
