@@ -4,6 +4,7 @@ import star from "/img/star.png";
 import './Profiles.css';
 import MenuBarUser from "../../components/menu-bar/menu-bar-user.tsx";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface User {
   id: number;
@@ -16,6 +17,7 @@ interface User {
 }
 
 const Profiles: React.FC = () => {
+  const navigate = useNavigate();
   const [users, setUsers] = useState<User[]>([]);
   const [filterType, setFilterType] = useState<"SENIOR" | "VOLUNTARIO">("SENIOR");
   const [filters, setFilters] = useState({
@@ -26,7 +28,7 @@ const Profiles: React.FC = () => {
   });
 
   const handleUserClick = (userId: number) => {
-    console.log(`Redirecionando para o perfil do usuário ${userId}`);
+    navigate(`/scheduleactivity/${userId}`);
   };
 
   const getAllUsers = async () => {
@@ -51,8 +53,6 @@ const Profiles: React.FC = () => {
       const activeFilters = Object.fromEntries(
         Object.entries(filters).filter(([, value]) => value)
       );
-
-
 
       const seniorsResponse = await axios.get("http://localhost:8081/users/seniors", {
         headers: {
