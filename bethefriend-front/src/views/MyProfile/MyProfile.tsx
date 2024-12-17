@@ -272,7 +272,7 @@ const MyProfile: React.FC = () => {
                         </>
                       )}
 
-                      {status === "default" && userId === 1 && (
+                      {status === "default" && userProfile.type === "SENIOR" && (
                         <button className="waiting-button">Aguardando agendamento</button>
                       )}
 
