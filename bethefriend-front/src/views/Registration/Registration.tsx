@@ -37,7 +37,7 @@ const Register: React.FC = () => {
       city: city,
       country: country,
       state: state,
-      skills: "selectedPerfil",
+      skills: ["selectedPerfil"],
       typeUser: "SENIOR",
     });
 
