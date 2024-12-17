@@ -8,7 +8,7 @@ import axios from "axios";
 const ScheduleActivities: React.FC = () => {
   const navigate = useNavigate();
   const { userId } = useParams<{ userId: string }>();
-  const goToMyActivities = () => {
+  const goToMyProfile = () => {
     navigate("/myprofile");
   };
 
@@ -74,7 +74,7 @@ const ScheduleActivities: React.FC = () => {
       });
       alert("Atividade agendada com sucesso!");
       console.log("Response Data:", response.data);
-      goToMyActivities();
+      goToMyProfile();
     } catch (error) {
       console.error("Erro ao agendar atividade:", error);
       alert("Ocorreu um erro ao agendar a atividade. Tente novamente.");

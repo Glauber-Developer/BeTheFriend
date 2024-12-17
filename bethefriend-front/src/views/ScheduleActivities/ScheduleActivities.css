@@ -1,11 +1,11 @@
 .schedule-container {
-    display: flex; /* Ativa o layout flexbox */
-    justify-content: space-between; /* Coloca os itens nas extremidades (esquerda e direita) */
-    align-items: center; /* Alinha os itens verticalmente no centro (opcional) */
-    width: 100%; /* Define a largura da box (ou defina uma largura fixa, se necessário) */
-    padding: 10px; /* Opcional, para adicionar espaçamento interno */
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
     box-sizing: border-box;
-    background-color: #ffffff; /* Exemplo de cor de fundo */
+    background-color: #ffffff; 
     margin-top: 400px;
 }
 
@@ -99,6 +99,8 @@
 
 .finalize-button {
   background-color: #9926F0;
+  text-align: center;
+  line-height: normal;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -120,5 +122,5 @@
 .finalize{
   width: 25px;
   margin-left: 5px;
-  
+  margin-bottom: 4px;
 }
