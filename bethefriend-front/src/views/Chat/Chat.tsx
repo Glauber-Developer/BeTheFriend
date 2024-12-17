@@ -21,7 +21,7 @@ const Chat: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState<string>("");
   const [userId] = useState<number>(1); 
-  const [chatUserId] = useState<number>(2); 
+  const [chatUserId, setChatUserId] = useState<number>(2); 
   const [chatUser, setChatUser] = useState<User | null>(null); 
 
   const fetchMessages = async () => {
@@ -98,6 +98,12 @@ const Chat: React.FC = () => {
     }
   };
 
+  const handleSelectUser = (id: number) => {
+    setChatUser(null); 
+    setMessages([]); 
+    setChatUserId(id); 
+  }
+
   return (
     <div className="chat-container">
       {/* Menu Superior */}
@@ -151,7 +157,10 @@ const Chat: React.FC = () => {
 
           //TODO: alterar o  caminho do user (pegar o user do backend)
           <ul>
-            {staticUsers.map((user) => (
+            {[
+              { id: 1, name: "User 1" },
+              { id: 2, name: "User 2" },
+            ].map((user) => (
               <li key={user.id}>
                 <button
                   onClick={() => handleSelectUser(user.id)}
