@@ -20,9 +20,6 @@ export function MenuBarUser () {
     const goToWhoWeAre = () => {
         navigate('/whoweare');
     };
-    const goToScheduleActivity = () => {
-        navigate('/scheduleactivity');
-    };
     const goToChat = () => {
         navigate('/chat');
     };
@@ -39,24 +36,14 @@ export function MenuBarUser () {
                 <a onClick={goToWhoWeAre}>
                     <div className="quem-somos">
                         <div className="text">
-                            <span>QUEM</span>
-                            <span>SOMOS</span>
+                            QUEM SOMOS
                         </div>
                     </div>
                 </a>
                 <a onClick={goToMyProfile}>
                 <div className="minhas-atividades">
                         <div className="text">
-                            <span>MEU</span>
-                            <span>PERFIL</span>
-                        </div>
-                    </div>
-                </a>
-                <a onClick={goToScheduleActivity}>
-                <div className="agendar-atividades">
-                        <div className="text">
-                            <span>AGENDAR</span>
-                            <span>ATIVIDADES</span>
+                            MEU PERFIL
                         </div>
                     </div>
                 </a>
