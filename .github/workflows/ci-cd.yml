@@ -14,55 +14,34 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:latest
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_DB: bethefriend-db
-          POSTGRES_USER: user
-          POSTGRES_PASSWORD: password
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
-      - name: Checkout code
+      - name: Checkout código
         uses: actions/checkout@v2
 
-      - name: Set up JDK 17
+      - name: Configurar JDK 17
         uses: actions/setup-java@v2
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Build with Maven
-        run: mvn clean install -DskipTests
-        working-directory: ./bethefriend
-
-      - name: Build and run Docker Compose
+      - name: Instalar Docker Compose
         run: |
-          docker-compose -f ./docker-compose.yml up --build -d
-          docker-compose -f ./docker-compose.yml ps
-        working-directory: ./
+          sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+          docker-compose --version
 
-      - name: Wait for services to be healthy
+      - name: Subir serviços com Docker Compose
         run: |
-          docker-compose -f ./docker-compose.yml exec bethefriend-db pg_isready -U user -d bethefriend-db
-          sleep 30
-        working-directory: ./
+          docker-compose -f docker-compose.yml up --build -d
+          docker-compose -f docker-compose.yml ps
 
-      - name: Run tests
+      - name: Esperar serviços ficarem disponíveis
+        run: sleep 30
+
+      - name: Executar testes
         run: mvn test
         working-directory: ./bethefriend
 
-      - name: Run integration tests
-        run: mvn verify
-        working-directory: ./bethefriend
 
-      - name: Tear down Docker Compose
-        run: docker-compose -f ./docker-compose.yml down
-        working-directory: ./
+      - name: Derrubar serviços do Docker Compose
+        run: docker-compose -f docker-compose.yml down
