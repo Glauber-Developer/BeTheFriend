@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import './Chat.css';
-import Imagechat from '/img/chat.png';
 import MenuBarUser from "../../components/menu-bar/menu-bar-user.tsx";
 import axios from "axios";
 
@@ -147,11 +146,24 @@ const Chat: React.FC = () => {
         </div>
       </div>
       <div className="right-section">
-        <img
-          src={Imagechat}
-          alt="Conexão entre gerações"
-          className="image"
-        />
+        <div className="scheduled-users">
+          <h3>Usuários com atividades agendadas</h3>
+
+          //TODO: alterar o  caminho do user (pegar o user do backend)
+          <ul>
+            {staticUsers.map((user) => (
+              <li key={user.id}>
+                <button
+                  onClick={() => handleSelectUser(user.id)}
+                  className="user-button"
+                >
+                  <span>👤</span>
+                  {user.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
