@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import listavoluntario from "/img/lista-voluntarios.png";
 import star from "/img/star.png";
 import './Profiles.css';
 import MenuBarUser from "../../components/menu-bar/menu-bar-user.tsx";
@@ -15,6 +14,8 @@ interface User {
   country: string;
   skills: string[];
 }
+
+
 
 const Profiles: React.FC = () => {
   const navigate = useNavigate();
@@ -110,18 +111,14 @@ const Profiles: React.FC = () => {
   }, [filterType]);
 
   return (
-    <div className="total">
+    <div className="prof">
+      {/* Menu */}
       <header className="menu-bar">
         <MenuBarUser />
       </header>
-
-      <div className="container">
-        <div className="image-section">
-          <img src={listavoluntario} alt="Background" className="background-image" />
-        </div>
-
-        <div className="filters-section">
-          <h2>Filtros</h2>
+      {/* Filters */}
+      <div className="filters-section">
+        <h2>Filtros</h2>
           <select
             name="type"
             onChange={(e) => setFilterType(e.target.value as "SENIOR" | "VOLUNTARIO")}
@@ -178,10 +175,11 @@ const Profiles: React.FC = () => {
               ))}
             </select>
           )}
-          <button onClick={getUsers}>Buscar</button>
-        </div>
-
-        <div className="list-section">
+        <button onClick={getUsers} className="search">Buscar</button>
+      </div>
+          
+          {/* Users List */}
+      <div className="list-section">
           <div className="user-list">
             {users.length > 0 ? (
               users.map((user) => (
@@ -194,11 +192,12 @@ const Profiles: React.FC = () => {
                   <div className="user-info">
                     <div className="user-name">{user.name}</div>
                     <div className="user-location">{user.city}, {user.state}</div>
-                    <div className="user-skills">{user.skills.join(", ")}</div>
                   </div>
+                  <div className="user-skills">{user.skills.join(", ")} Interesses em comum</div>
                   <div className="skills-count">
+                    <span>{user.skills.length} Atividades realizadas</span>
                     <img src={star} className="icon-star" />
-                    <span>{user.skills.length}</span>
+                    
                   </div>
                 </div>
               ))
@@ -208,7 +207,6 @@ const Profiles: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
