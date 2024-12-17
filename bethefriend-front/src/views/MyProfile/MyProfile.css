@@ -117,6 +117,7 @@ body {
 h3 {
   color:#9926f0;
   text-align: center;
+  margin-bottom: 15px;
 }
 
 .preference-button:hover {
@@ -130,12 +131,87 @@ h3 {
   color: #fff;
 }
 
+/* BOTÕES ACCEPT OR REFUSE ACTIVITY */
+.activity-cont3 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  margin-left: 65px;
+}
+
+.accept-button {
+  padding: 7px 15px;
+  border: none;
+  border-radius: 25px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  background-color: #6da756;
+  border: 2px solid #b8b8b8;
+  color: white;
+}
+
+.accept-button:hover {
+  background-color: #c194e4;
+  border: 2px solid #9926f0;
+}
+.cancel-button {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 25px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  background-color: #ffffff;
+  border: 2px solid #b8b8b8;
+  color: black;
+}
+
+.cancel-button:hover {
+  background-color: #f8b6b0;
+  border: 2px solid #fb8075;
+}
+
+.scheduled {
+  background-color: #c194e4;
+  border: 2px solid #9926f0;
+  color: white;
+  padding: 8px 10px;
+  border-radius: 25px;
+  font-size: 14px;
+}
+
+.waiting-button {
+  background-color:  rgb(228, 228, 228);
+  color: white;
+  border: 2px solid #9926f0;
+  padding: 8px 10px;
+  border-radius: 25px;
+  font-size: 12px;
+  color: black;
+  margin-left: 55px;
+  cursor: default;
+}
+
+.cancelled-button {
+  background-color: #f8b6b0;
+  color: rgb(0, 0, 0);
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  border: 2px solid #fb8075;
+  cursor: default;
+  margin-left: 50px;
+}
+
+
 /* Atividades agendadas */
 .scheduled-activities {
   margin-bottom: 30px;
 }
 
-.activity-box {
+.activity-box3 {
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
   padding: 15px;
@@ -146,41 +222,41 @@ h3 {
   height: auto; 
   max-height: 400px;
 }
-.activities-box {
+.activities-box3 {
   max-height: 700px; 
   overflow-y: auto; 
   overflow-x: hidden; 
   padding-right: 10px; 
   scrollbar-width: thin; 
-  scrollbar-color: #9926f0 #ead5fc; 
+  scrollbar-color: #d3b1ec #ead5fc; 
 }
 /* Para navegadores baseados no Webkit  */
-.activities-box::-webkit-scrollbar {
+.activities-box3::-webkit-scrollbar {
   width: 8px;
 }
 
-.activities-box::-webkit-scrollbar-thumb {
-  background-color: #9926f0; 
+.activities-box3::-webkit-scrollbar-thumb {
+  background-color: #cea3ee; 
   border-radius: 4px;
 }
 
-.activities-box::-webkit-scrollbar-track {
+.activities-box3::-webkit-scrollbar-track {
   background-color: #ead5fc; 
 }
-.activity-box:hover {
+.activity-box3:hover {
   transform: translateY(-2px);
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.activity-box p {
+.activity-box3 p {
   margin: 5px 0;
   font-size: 1em;
   color: #555;
 }
-.activity-box strong {
+.activity-box3 strong {
   color: #333;
 }
-.activities-box .activity-box:last-child {
+.activities-box3 .activity-box:last-child {
   margin-bottom: 0;
 }
 
@@ -201,3 +277,5 @@ h3 {
 .edit-profile-button:hover {
   background-color: #7a1dbf;
 }
+
+

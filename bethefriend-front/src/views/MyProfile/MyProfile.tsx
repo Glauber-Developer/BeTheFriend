@@ -12,7 +12,19 @@ interface Activity {
   meetingLocation: string;
 }
 
+
 const MyProfile: React.FC = () => {
+  const userId = 0;
+  const [status, setStatus] = useState<"default" | "scheduled" | "cancelled">("default");
+
+  const handleAccept = () => {
+    setStatus("scheduled");
+  };
+
+  const handleCancel = () => {
+    setStatus("cancelled");
+  };
+
   const [selectedPreferences, setSelectedPreferences] = useState<string[]>([]);
   const [activities, setActivities] = useState<Activity[]>([]);
   const [isEditing, setIsEditing] = useState(false);
@@ -87,7 +99,11 @@ const MyProfile: React.FC = () => {
     "Culinária",
   ];
 
+  
+  
   const handleEditToggle = async () => {
+
+    
     if (isEditing) {
       try {
         const token = localStorage.getItem("token");
@@ -242,6 +258,37 @@ const MyProfile: React.FC = () => {
                 <p><strong>{
                   activity.meetingLocation === "Presencial" ? "Endereço:" : "Link:"
                 }</strong> {activity.meetingLocation}</p>
+
+                <div className="activity-cont3">
+                //TODO: alterar o  caminho if userVoluntario or userSenior
+                      {status === "default" && userId === 0 && (
+                        <>
+                          <button className="accept-button" onClick={handleAccept}>
+                          ✓ Aceitar Atividade
+                          </button>
+                          <button className="cancel-button" onClick={handleCancel}>
+                            Desmarcar Atividade
+                          </button>
+                        </>
+                      )}
+
+                      {status === "default" && userProfile.type === "SENIOR" && (
+                        <button className="waiting-button">Aguardando agendamento</button>
+                      )}
+
+                      {status === "scheduled" && (
+                        <>
+                          <button className="scheduled">✓  Atividade agendada</button>
+                          <button className="cancel-button" onClick={handleCancel}>
+                            Desmarcar Atividade
+                          </button>
+                        </>
+                      )}
+
+                      {status === "cancelled" && (
+                        <button className="cancelled-button">Atividade desmarcada</button>
+                      )}
+                    </div>
               </div>
             ))}
           </div>
