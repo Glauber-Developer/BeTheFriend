@@ -270,17 +270,17 @@ const MyProfile: React.FC = () => {
         </div>
 
         <div className="profile-right">
-          <div className="activities-box">
+          <div className="activities-box3">
             <h3>Atividades Agendadas</h3>
             {activities.map((activity, index) => (
-              <div key={index} className="activity-box">
+              <div key={index} className="activity-box3">
                 <p><strong>Título:</strong> {activity.title}</p>
                 <p><strong>Habilidades:</strong> {activity.activityType ? activity.activityType : "Nenhuma habilidade disponível"}</p>
                 <p><strong>Data:</strong> {activity.date}</p>
                 <p><strong>Horário:</strong> {activity.time}</p>
-                <p><strong>Local:</strong> {activity.locationFormat}</p>
+                <p><strong>Endereço:</strong> {activity.locationFormat}</p>
                 <p><strong>{
-                  activity.meetingLocation === "Presencial" ? "Endereço:" : "Link:"
+                  activity.meetingLocation === "Presencial" ? "Local:" : "Link:"
                 }</strong> {activity.meetingLocation}</p>
 
                 <div className="activity-cont3">
