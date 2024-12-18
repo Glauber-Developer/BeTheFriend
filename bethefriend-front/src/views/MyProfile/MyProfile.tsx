@@ -4,6 +4,7 @@ import { MenuBarUser } from "../../components/menu-bar/menu-bar-user";
 import axios from "axios";
 
 interface Activity {
+  id: number;
   title: string;
   skills: string[];
   date: string;
@@ -14,19 +15,7 @@ interface Activity {
   meetingLocation: string;
 }
 
-
 const MyProfile: React.FC = () => {
-  // const userId = 0; //ver depois
-  const [status, setStatus] = useState<"default" | "scheduled" | "cancelled">("default");
-
-  const handleAccept = () => {
-    setStatus("scheduled");
-  };
-
-  const handleCancel = () => {
-    setStatus("cancelled");
-  };
-
   const [selectedPreferences, setSelectedPreferences] = useState<string[]>([]);
   const [activities, setActivities] = useState<Activity[]>([]);
   const [isEditing, setIsEditing] = useState(false);
@@ -43,27 +32,6 @@ const MyProfile: React.FC = () => {
   });
 
   useEffect(() => {
-    const fetchUpdateActivity = async () => {
-      try { 
-        const token = localStorage.getItem("token");
-                
-        const response = await axios.put(`http://localhost:8081/activities/${userProfile.id}`, {
-          ...activities,
-          status: status,
-        }, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        console.log("Update: ",response.data);
-        setStatus(response.data.status);
-        alert("Perfil atualizado com sucesso!");
-      }
-      catch(error) {
-        console.error("Erro ao buscar dados do usuário logado:", error);
-      }
-    }
-
     const fetchUserProfile = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -95,7 +63,6 @@ const MyProfile: React.FC = () => {
         alert("Não foi possível carregar os dados do usuário. Tente novamente.");
       }
     };
-    fetchUpdateActivity();
     fetchUserProfile();
   }, []);
 
@@ -123,11 +90,7 @@ const MyProfile: React.FC = () => {
     "Culinária",
   ];
 
-  
-  
   const handleEditToggle = async () => {
-
-    
     if (isEditing) {
       try {
         const token = localStorage.getItem("token");
@@ -158,6 +121,31 @@ const MyProfile: React.FC = () => {
     field: string
   ) => {
     setUserProfile({ ...userProfile, [field]: event.target.value });
+  };
+
+  const updateActivityStatus = async (activityId: number, status: string) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Token de autenticação não encontrado. Por favor, faça login novamente.");
+        return;
+      }
+
+      const response = await axios.put(`http://localhost:8081/activities/${activityId}/status`, { status }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setActivities((prevActivities) =>
+        prevActivities.map((activity) =>
+          activity.id === activityId ? { ...activity, status: response.data.status } : activity
+        )
+      );
+      alert("Status da atividade atualizado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao atualizar status da atividade:", error);
+      alert("Ocorreu um erro ao atualizar o status da atividade. Tente novamente.");
+    }
   };
 
   return (
@@ -284,31 +272,31 @@ const MyProfile: React.FC = () => {
                 }</strong> {activity.meetingLocation}</p>
 
                 <div className="activity-cont3">
-                      {status === "default" && userProfile.type === "VOLUNTARIO" && (
+                      {activity.status === "Pendente" && userProfile.type === "VOLUNTARIO" && (
                         <>
-                          <button className="accept-button" onClick={handleAccept}>
+                          <button className="accept-button" onClick={() => updateActivityStatus(activity.id, "scheduled")}>
                           ✓ Aceitar Atividade
                           </button>
-                          <button className="cancel-button" onClick={handleCancel}>
+                          <button className="cancel-button" onClick={() => updateActivityStatus(activity.id, "cancelled")}>
                             Desmarcar Atividade
                           </button>
                         </>
                       )}
 
-                      {status === "default" && userProfile.type === "SENIOR" && (
+                      {activity.status === "Pendente" && userProfile.type === "SENIOR" && (
                         <button className="waiting-button">Aguardando agendamento</button>
                       )}
 
-                      {status === "scheduled" && (
+                      {activity.status === "{\"status\":\"scheduled\"}" && (
                         <>
                           <button className="scheduled">✓  Atividade agendada</button>
-                          <button className="cancel-button" onClick={handleCancel}>
+                          <button className="cancel-button" onClick={() => updateActivityStatus(activity.id, "cancelled")}>
                             Desmarcar Atividade
                           </button>
                         </>
                       )}
 
-                      {status === "cancelled" && (
+                      {activity.status === "{\"status\":\"cancelled\"}" && (
                         <button className="cancelled-button">Atividade desmarcada</button>
                       )}
                     </div>
