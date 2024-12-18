@@ -4,35 +4,31 @@ import org.springframework.stereotype.Service;
 
 import com.bethefriend.bethefriend.domain.Activity;
 import com.bethefriend.bethefriend.infrastructure.repositories.ActivityRepository;
-import com.bethefriend.bethefriend.infrastructure.repositories.UserRepository;
 
 @Service
 public class UpdateActivityByUser {
 
     private final ActivityRepository activityRepository;
-    // private final UserRepository userRepository;
 
-    public UpdateActivityByUser(ActivityRepository activityRepository, UserRepository userRepository) {
+    public UpdateActivityByUser(ActivityRepository activityRepository) {
         this.activityRepository = activityRepository;
-        // this.userRepository = userRepository;
     }
 
     public Activity updateActivity(Long userId, Activity activity) {
-        
-        Activity updateActivity = activityRepository.findById(userId)
-            .orElseThrow(() -> new IllegalArgumentException("Atividade não encontrada"));
-        updateActivity.setStatus(activity.getStatus());   
+        Activity existingActivity = activityRepository.findById(activity.getId()).orElseThrow(() -> new RuntimeException("Activity not found"));
+        existingActivity.setTitle(activity.getTitle());
+        existingActivity.setDate(activity.getDate());
+        existingActivity.setTime(activity.getTime());
+        existingActivity.setActivityType(activity.getActivityType());
+        existingActivity.setLocationFormat(activity.getLocationFormat());
+        existingActivity.setMeetingLocation(activity.getMeetingLocation());
+        existingActivity.setStatus(activity.getStatus());
+        return activityRepository.save(existingActivity);
+    }
 
-        // userRepository.findById(activity.getSenior().getId())
-        //               .orElseThrow(() -> new IllegalArgumentException("Usuário Senior com ID " 
-        //                                       + activity.getSenior().getId() + " não encontrado."));
-
-        
-        // userRepository.findById(activity.getVoluntario().getId())
-        //               .orElseThrow(() -> new IllegalArgumentException("Usuário Voluntário com ID " 
-        //                                       + activity.getVoluntario().getId() + " não encontrado."));
-
-        
-        return activityRepository.save(updateActivity);
+    public Activity updateActivityStatus(Long activityId, String status) {
+        Activity existingActivity = activityRepository.findById(activityId).orElseThrow(() -> new RuntimeException("Activity not found"));
+        existingActivity.setStatus(status);
+        return activityRepository.save(existingActivity);
     }
 }
