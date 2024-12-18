@@ -61,14 +61,13 @@ const Chat: React.FC = () => {
         alert("Token de autenticação não encontrado. Por favor, faça login novamente.");
         return;
       }
-
       const responseMe = await axios.get(`http://localhost:8081/users/me`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      const meId = responseMe.data.id;
-      setUserId(meId);
+      const userId = responseMe.data.id;
+      setUserId(userId);
 
       if (userId === chatUserId) {
         console.warn("O usuário não pode iniciar um chat consigo mesmo.");
