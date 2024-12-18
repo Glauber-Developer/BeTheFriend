@@ -39,12 +39,12 @@ public class ActivityController {
         Activity newActivity = createActivityUseCase.createActivity(activity);
         return ResponseEntity.status(HttpStatus.CREATED).body(newActivity);
     }
-    @PutMapping("/{userId}")
-    public ResponseEntity<Activity> updateActivity(@PathVariable Long userId, @RequestBody Activity activity) {
-        Activity updateActivity = updateActivitiesByUserUseCase.updateActivity(userId, activity);       
-        return ResponseEntity.status(HttpStatus.OK).body(updateActivity);
+    @PutMapping("/{activityId}/status")
+    public ResponseEntity<Activity> updateActivityStatus(@PathVariable Long activityId, @RequestBody String status) {
+        Activity updatedActivity = updateActivitiesByUserUseCase.updateActivityStatus(activityId, status);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedActivity);
     }
-
+    
     @GetMapping
     public ResponseEntity<List<Activity>> getAllActivities() {
         return ResponseEntity.ok(findAllActivitiesUseCase.getAllActivities());
