@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import star from "/img/star.png";
 import './Profiles.css';
 import MenuBarUser from "../../components/menu-bar/menu-bar-user.tsx";
 import axios from "axios";
@@ -14,8 +13,6 @@ interface User {
   country: string;
   skills: string[];
 }
-
-
 
 const Profiles: React.FC = () => {
   const navigate = useNavigate();
@@ -91,7 +88,7 @@ const Profiles: React.FC = () => {
     const { name, value } = e.target;
     setFilters((prevFilters) => ({
       ...prevFilters,
-      [name]: value.toUpperCase(),
+      [name]: value,
     }));
   };
 
@@ -100,7 +97,7 @@ const Profiles: React.FC = () => {
     if (value.length <= 2) {
       setFilters((prevFilters) => ({
         ...prevFilters,
-        [name]: value.toUpperCase(),
+        [name]: value,
       }));
     }
   };
@@ -146,7 +143,7 @@ const Profiles: React.FC = () => {
             name="country"
             placeholder="País"
             value={filters.country}
-            onChange={handleInput}
+            onChange={handleFilterChange}
           />
           {filterType === "VOLUNTARIO" && (
             <select
@@ -169,7 +166,7 @@ const Profiles: React.FC = () => {
                 "Artesanatos",
                 "Culinária",
               ].map((skill) => (
-                <option key={skill} value={skill.toUpperCase()}>
+                <option key={skill} value={skill}>
                   {skill}
                 </option>
               ))}
@@ -193,13 +190,8 @@ const Profiles: React.FC = () => {
                     <div className="user-name">{user.name}</div>
                     <div className="user-location">{user.city}, {user.state}</div>
                   </div>
-                  <div className="user-skills">{user.skills.join(", ")} Interesses em comum</div>
-                  <div className="skills-count">
-                    <span>{user.skills.length} Atividades realizadas</span>
-                    <img src={star} className="icon-star" />
-                    
+                  <div className="user-skills">Interesses: {user.skills.join(", ")}</div>
                   </div>
-                </div>
               ))
             ) : (
               <p>Nenhum usuário encontrado.</p>
