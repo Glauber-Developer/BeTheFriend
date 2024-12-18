@@ -8,13 +8,15 @@ interface Activity {
   skills: string[];
   date: string;
   time: string;
+  activityType: string;
   locationFormat: string;
+  status: string;
   meetingLocation: string;
 }
 
 
 const MyProfile: React.FC = () => {
-  const userId = 0;
+  // const userId = 0; //ver depois
   const [status, setStatus] = useState<"default" | "scheduled" | "cancelled">("default");
 
   const handleAccept = () => {
@@ -41,6 +43,27 @@ const MyProfile: React.FC = () => {
   });
 
   useEffect(() => {
+    const fetchUpdateActivity = async () => {
+      try { 
+        const token = localStorage.getItem("token");
+                
+        const response = await axios.put(`http://localhost:8081/activities/${userProfile.id}`, {
+          ...activities,
+          status: status,
+        }, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("Update: ",response.data);
+        setStatus(response.data.status);
+        alert("Perfil atualizado com sucesso!");
+      }
+      catch(error) {
+        console.error("Erro ao buscar dados do usuário logado:", error);
+      }
+    }
+
     const fetchUserProfile = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -65,13 +88,14 @@ const MyProfile: React.FC = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+        console.log(activitiesResponse.data);
         setActivities(activitiesResponse.data);
       } catch (error) {
         console.error("Erro ao buscar dados do usuário logado:", error);
         alert("Não foi possível carregar os dados do usuário. Tente novamente.");
       }
     };
-
+    fetchUpdateActivity();
     fetchUserProfile();
   }, []);
 
@@ -251,7 +275,7 @@ const MyProfile: React.FC = () => {
             {activities.map((activity, index) => (
               <div key={index} className="activity-box">
                 <p><strong>Título:</strong> {activity.title}</p>
-                <p><strong>Habilidades:</strong> {Array.isArray(activity.skills) ? activity.skills.join(", ") : "Nenhuma habilidade disponível"}</p>
+                <p><strong>Habilidades:</strong> {activity.activityType ? activity.activityType : "Nenhuma habilidade disponível"}</p>
                 <p><strong>Data:</strong> {activity.date}</p>
                 <p><strong>Horário:</strong> {activity.time}</p>
                 <p><strong>Local:</strong> {activity.locationFormat}</p>
@@ -260,8 +284,7 @@ const MyProfile: React.FC = () => {
                 }</strong> {activity.meetingLocation}</p>
 
                 <div className="activity-cont3">
-                //TODO: alterar o  caminho if userVoluntario or userSenior
-                      {status === "default" && userId === 0 && (
+                      {status === "default" && userProfile.type === "VOLUNTARIO" && (
                         <>
                           <button className="accept-button" onClick={handleAccept}>
                           ✓ Aceitar Atividade
