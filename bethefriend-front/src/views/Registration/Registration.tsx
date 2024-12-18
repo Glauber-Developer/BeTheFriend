@@ -19,17 +19,18 @@ const Register: React.FC = () => {
   const [perfil, setPerfil] = useState<string>("");
 
   const togglePerfilSelection = (item: string) => {
-    setSelectedPerfil((prev) =>
-      prev.includes(item)
+    setSelectedPerfil((prev) => {
+      const newSelectedPerfil = prev.includes(item)
         ? prev.filter((i) => i !== item)
-        : [...prev, item]
-    );
+        : [...prev, item];
+      console.log("Updated selectedPerfil:", newSelectedPerfil);
+      return newSelectedPerfil;
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // TODO: Implementar a função de cadastro
     const response = await axios.post("http://localhost:8081/auth/register", {
       name: name,
       email: email,
@@ -37,8 +38,8 @@ const Register: React.FC = () => {
       city: city,
       country: country,
       state: state,
-      skills: ["selectedPerfil"],
-      typeUser: "SENIOR",
+      skills: selectedPerfil,
+      typeUser: perfil,
     });
 
     navigate("/auth/login");
@@ -52,12 +53,10 @@ const Register: React.FC = () => {
         </header>
     <form onSubmit={handleSubmit}>
     <div className="container-box center-wrapper">
-      {/* Caixa da Esquerda */}
       <div className="box-left">
         <h1>Cadastro</h1>
         <div className="form-box">
         
-            {/* - Linha 1: Nome e Sobrenome - */}
             <div className="row">
                 <div className="input-group">
                 <label>Nome</label>
@@ -81,7 +80,6 @@ const Register: React.FC = () => {
                 </div>
             </div>
 
-            {/* - Linha 2: E-mail - */}
             <div className="row">
                 <div className="input-group">
                 <label>E-mail</label>
@@ -95,7 +93,6 @@ const Register: React.FC = () => {
                 </div>
             </div>
 
-            {/* - Linha 3: Senha e Confirmação de Senha - */}
             <div className="row">
                 <div className="input-group">
                 <label>Senha</label>
@@ -121,7 +118,6 @@ const Register: React.FC = () => {
             
         </div>
         <div className="form-box-3">
-                    {/* - Linha 4: País, Cidade e Estado -*/}
             <div className="row">
             <div className="input-group full-width">
                 <label>País</label>
@@ -159,7 +155,6 @@ const Register: React.FC = () => {
         </div>
       </div>
 
-      {/* Caixa da Direita */}
       <div className="box-right">
       <div className="icon">
           <img src={imageicon}  className="icon-registration" />
@@ -168,21 +163,23 @@ const Register: React.FC = () => {
           <h2>Quem é você?</h2>
           <div className="button-group">
             <button
-              className={`option ${perfil === "Jovem voluntário" ? "selected" : ""}`}
-              onClick={() => setPerfil("Jovem voluntário")}
+              type="button"
+              className={`option ${perfil === "VOLUNTARIO" ? "selected" : ""}`}
+              onClick={() => setPerfil("VOLUNTARIO")}
               >
-              <span className={`circle ${perfil === "Jovem voluntário" ? "active" : ""}`} />
+              <span className={`circle ${perfil === "VOLUNTARIO" ? "active" : ""}`} />
               Jovem voluntário
             </button>
             <button
+                type="button"
                 className={`option ${
-                    perfil === "Pessoa em busca de conexão e apoio" ? "selected" : ""
+                    perfil === "SENIOR" ? "selected" : ""
                 }`}
-                onClick={() => setPerfil("Pessoa em busca de conexão e apoio")}
+                onClick={() => setPerfil("SENIOR")}
                 >
                 <span
                     className={`circle ${
-                    perfil === "Pessoa em busca de conexão e apoio" ? "active" : ""
+                    perfil === "SENIOR" ? "active" : ""
                     }`}
                 />
                 Pessoa em busca de conexão e apoio
@@ -207,12 +204,15 @@ const Register: React.FC = () => {
               "Culinária",
             ].map((item) => (
               <button
-                value = {selectedPerfil}
+                value = {item}
                 key={item}
+                type="button"
                 className={`selectable ${
                   selectedPerfil.includes(item) ? "selected" : ""
                 }`}
-                onClick={() => togglePerfilSelection(item)}
+                onClick={() => {togglePerfilSelection(item);
+                console.log("Selected perfil:", selectedPerfil);
+                }}
               >
                 {item}
               </button>
