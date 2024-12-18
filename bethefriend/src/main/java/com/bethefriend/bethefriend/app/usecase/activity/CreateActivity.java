@@ -7,8 +7,6 @@ import com.bethefriend.bethefriend.domain.user.User;
 import com.bethefriend.bethefriend.infrastructure.repositories.ActivityRepository;
 import com.bethefriend.bethefriend.infrastructure.repositories.UserRepository;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Optional;
 
 @Service
@@ -45,8 +43,8 @@ public class CreateActivity {
         activity.setSenior(senior.get());
         activity.setVoluntario(voluntario.get());
         activity.setStatus("Pendente");
-        activity.setDate(LocalDate.now());
-        activity.setTime(LocalTime.now());
+        activity.setDate(activity.getDate());
+        activity.setTime(activity.getTime());
         return activityRepository.save(activity);
     }
 }

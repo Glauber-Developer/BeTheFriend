@@ -9,11 +9,9 @@ import com.bethefriend.bethefriend.app.usecase.activity.FindActivityByUser;
 import com.bethefriend.bethefriend.app.usecase.activity.FindAllActivities;
 import com.bethefriend.bethefriend.app.usecase.activity.UpdateActivityByUser;
 import com.bethefriend.bethefriend.domain.Activity;
+import com.bethefriend.bethefriend.domain.user.ActivityDTO;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
@@ -53,7 +51,8 @@ public class ActivityController {
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Activity>> getActivityByUser(@PathVariable Long userId) {
-        return ResponseEntity.ok(findActivitiesByUserUseCase.getActivityByUser(userId));
+    public ResponseEntity<List<ActivityDTO>> getActivitiesByUser(@PathVariable Long userId) {
+        List<ActivityDTO> activities = findActivitiesByUserUseCase.getActivitiesByUser(userId);
+        return ResponseEntity.ok(activities);
     }
 }
