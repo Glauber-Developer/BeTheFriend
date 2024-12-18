@@ -2,24 +2,23 @@
   margin: 0;
   padding: 0;
 }
-.header {
+.homeuserheader {
   background: linear-gradient(135deg, #fb8075, #9926f0);
   color: white;
-  padding: 0px 20px 20px;
-  position: relative;
   width: 100vw;
   height: 100vh;
-  /* margin-top: 60px; */
+  padding-top: 100px;
+  position: relative;
 
 }
-.header-content {
+.homeuserheader-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 /* Parte Esquerda */
-.header-left {
+.homeuserheader-left {
   max-width: 50%;
   margin-left: 120px;
 }
@@ -106,12 +105,13 @@
 }
 
  /* Parte Direita */
-.header-right {
+.homeuserheader-right {
   display: flex;
   justify-content: center; 
   align-items: center;
   max-width: 50%; 
   padding-left: 70px;
+  margin-right: 120px;
 }
 
 .image {
