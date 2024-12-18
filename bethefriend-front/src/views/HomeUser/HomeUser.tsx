@@ -22,10 +22,10 @@ const HomeUser: React.FC = () => {
           </div>
 
           {/* HERO SECTION */}
-          <main className="header">
-              <div className="header-content">
+          <main className="homeuserheader">
+              <div className="homeuserheader-content">
                 {/* LEFT */}
-                <div className="header-left">
+                <div className="homeuserheader-left">
                   <h1 className="title">
                     Seja <br />
                     Bem-vindo ao <br />
@@ -41,7 +41,7 @@ const HomeUser: React.FC = () => {
                   </div>
                 </div>
            {/* RIGHT */}
-           <div className="header-right">
+           <div className="homeuserheader-right">
                     <img src={homeuser} alt="Conexão entre gerações" className="image"/>
                   </div>
                 </div>
