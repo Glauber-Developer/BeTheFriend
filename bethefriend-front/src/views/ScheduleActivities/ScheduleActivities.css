@@ -1,12 +1,11 @@
-.schedule-container {
-    display: flex; /* Ativa o layout flexbox */
-    justify-content: space-between; /* Coloca os itens nas extremidades (esquerda e direita) */
-    align-items: center; /* Alinha os itens verticalmente no centro (opcional) */
-    width: 100%; /* Define a largura da box (ou defina uma largura fixa, se necessário) */
-    padding: 10px; /* Opcional, para adicionar espaçamento interno */
+.scheduleContainer {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     box-sizing: border-box;
-    background-color: #ffffff; /* Exemplo de cor de fundo */
-    margin-top: 400px;
+    background-color: #ffffff; 
+    margin-left: 20px;
 }
 
 .schedule-box {
@@ -19,7 +18,7 @@
   font-family: 'inter', sans-serif;
 }
 
-.header {
+.schedulehero {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -31,14 +30,14 @@
   margin-right: 10px;
 }
 
-.header-text h2 {
+.schedulehero-text h2 {
   margin: 0;
   font-size: 1.5rem;
   color: #9926F0;
   font-family: 'inter', sans-serif;
 }
 
-.header-text h3 {
+.schedulehero-text h3 {
   margin: 0;
   font-size: 1rem;
   color: #9926F0;
@@ -61,12 +60,21 @@
   border-radius: 5px;
   font-family: 'inter', sans-serif;
 }
-.input-local {
-  width: 105%;
+.input-data {
+  width: 92%;
   padding: 10px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-family: 'inter', sans-serif;
+}
+.input-local {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: 'inter', sans-serif;
 }
 
 .activity-options {
@@ -99,13 +107,15 @@
 
 .finalize-button {
   background-color: #9926F0;
+  text-align: center;
+  line-height: normal;
   color: #fff;
   padding: 10px 20px;
   border: none;
   border-radius: 25px;
   cursor: pointer;
   font-size: 1rem;
-  margin-top: 20px;
+  margin-top: 250px;
   margin-left: 50px;
   transition: background-color 0.3s;
   margin-bottom: 700px;
@@ -120,5 +130,14 @@
 .finalize{
   width: 25px;
   margin-left: 5px;
-  
+  margin-bottom: 4px;
+}
+.rowschedule {
+  display: flex; 
+  gap: 2rem;
+}
+.inputschedule {
+  display: flex;
+  flex-direction: column;
+  flex: 1;  
 }

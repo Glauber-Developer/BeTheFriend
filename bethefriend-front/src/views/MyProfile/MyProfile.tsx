@@ -4,11 +4,14 @@ import { MenuBarUser } from "../../components/menu-bar/menu-bar-user";
 import axios from "axios";
 
 interface Activity {
+  id: number;
   title: string;
   skills: string[];
   date: string;
   time: string;
+  activityType: string;
   locationFormat: string;
+  status: string;
   meetingLocation: string;
 }
 
@@ -53,13 +56,13 @@ const MyProfile: React.FC = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+        console.log(activitiesResponse.data);
         setActivities(activitiesResponse.data);
       } catch (error) {
         console.error("Erro ao buscar dados do usuário logado:", error);
         alert("Não foi possível carregar os dados do usuário. Tente novamente.");
       }
     };
-
     fetchUserProfile();
   }, []);
 
@@ -118,6 +121,31 @@ const MyProfile: React.FC = () => {
     field: string
   ) => {
     setUserProfile({ ...userProfile, [field]: event.target.value });
+  };
+
+  const updateActivityStatus = async (activityId: number, status: string) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Token de autenticação não encontrado. Por favor, faça login novamente.");
+        return;
+      }
+
+      const response = await axios.put(`http://localhost:8081/activities/${activityId}/status`, { status }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setActivities((prevActivities) =>
+        prevActivities.map((activity) =>
+          activity.id === activityId ? { ...activity, status: response.data.status } : activity
+        )
+      );
+      alert("Status da atividade atualizado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao atualizar status da atividade:", error);
+      alert("Ocorreu um erro ao atualizar o status da atividade. Tente novamente.");
+    }
   };
 
   return (
@@ -230,18 +258,48 @@ const MyProfile: React.FC = () => {
         </div>
 
         <div className="profile-right">
-          <div className="activities-box">
+          <div className="activities-box3">
             <h3>Atividades Agendadas</h3>
             {activities.map((activity, index) => (
-              <div key={index} className="activity-box">
+              <div key={index} className="activity-box3">
                 <p><strong>Título:</strong> {activity.title}</p>
-                <p><strong>Habilidades:</strong> {Array.isArray(activity.skills) ? activity.skills.join(", ") : "Nenhuma habilidade disponível"}</p>
+                <p><strong>Habilidades:</strong> {activity.activityType ? activity.activityType : "Nenhuma habilidade disponível"}</p>
                 <p><strong>Data:</strong> {activity.date}</p>
                 <p><strong>Horário:</strong> {activity.time}</p>
-                <p><strong>Local:</strong> {activity.locationFormat}</p>
+                <p><strong>Endereço:</strong> {activity.locationFormat}</p>
                 <p><strong>{
-                  activity.meetingLocation === "Presencial" ? "Endereço:" : "Link:"
+                  activity.meetingLocation === "Presencial" ? "Local:" : "Link:"
                 }</strong> {activity.meetingLocation}</p>
+
+                <div className="activity-cont3">
+                      {activity.status === "Pendente" && userProfile.type === "VOLUNTARIO" && (
+                        <>
+                          <button className="accept-button" onClick={() => updateActivityStatus(activity.id, "scheduled")}>
+                          ✓ Aceitar Atividade
+                          </button>
+                          <button className="cancel-button" onClick={() => updateActivityStatus(activity.id, "cancelled")}>
+                            Desmarcar Atividade
+                          </button>
+                        </>
+                      )}
+
+                      {activity.status === "Pendente" && userProfile.type === "SENIOR" && (
+                        <button className="waiting-button">Aguardando agendamento</button>
+                      )}
+
+                      {activity.status === "{\"status\":\"scheduled\"}" && (
+                        <>
+                          <button className="scheduled">✓  Atividade agendada</button>
+                          <button className="cancel-button" onClick={() => updateActivityStatus(activity.id, "cancelled")}>
+                            Desmarcar Atividade
+                          </button>
+                        </>
+                      )}
+
+                      {activity.status === "{\"status\":\"cancelled\"}" && (
+                        <button className="cancelled-button">Atividade desmarcada</button>
+                      )}
+                    </div>
               </div>
             ))}
           </div>

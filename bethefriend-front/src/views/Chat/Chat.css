@@ -5,6 +5,7 @@
   background-color: #ffffff;
   margin-left: auto;
   margin-right: auto;
+  gap: 200px 100px;
 }
 
 .chat-box {
@@ -31,7 +32,6 @@
   align-items: center;
   margin-bottom: 20px;
 }
-
 
 .chat-icon {
   font-size: 50px;
@@ -61,19 +61,18 @@
   flex-grow: 1;
   overflow-y: auto; /* Ativa o scroll vertical */
   margin-bottom: 20px;
-  height: calc(80vh - 180px);
+  height: calc(80vh - 220px);
 }
+
 /* Estilizando o scroll */
 .chat-messages::-webkit-scrollbar {
   width: 8px;
-  background-color: #f3b5af; /* Cor do fundo da barra de rolagem */
-
+  background-color: #f3b5af;
 }
 
 .chat-messages::-webkit-scrollbar-thumb {
   background-color: #e46b60; /* Cor da "pega" da barra */
   border-radius: 4px;
-  
 }
 
 .chat-messages::-webkit-scrollbar-thumb:hover {
@@ -147,7 +146,7 @@
   background-color: #7a1dbd;
 }
 
-/* Parte Esquerda */
+/* Left Part */
 .left-section {
   display: flex;
   flex-direction: column;
@@ -155,11 +154,72 @@
   padding-left: 20px; 
   max-width: 50%;
 }
-/* Parte Direita */
+
+/* Right Part */
 .right-section {
   display: flex;
-  justify-content: center; 
+  flex-direction: column;
   align-items: center;
-  max-width: 50%; 
-  margin-left: 40px; 
+  justify-content: center;
+  padding: 20px;
+  background-color: #ffffff; 
+  height: 100vh; 
+  justify-content: center;
+}
+
+
+/*      lista de usuários com atividade agendada    */
+.scheduled-users {
+  text-align: center;
+  width: 100%;
+}
+
+.scheduled-users h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #9926f0;
+}
+
+.scheduled-users ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.scheduled-users li {
+  margin-bottom: 5px;
+}
+
+.user-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; 
+  width: 200px; 
+  height: 50px; 
+  background-color: #ead5fc;
+  color: #653a76; 
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 10px; 
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.user-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+}
+
+.user-button:active {
+  transform: scale(0.95); 
+}
+
+.user-button span {
+  font-size: 1.2rem; 
 }

@@ -2,24 +2,24 @@
   margin: 0;
   padding: 0;
 }
-.header {
+.hero {
   background: linear-gradient(135deg, #fb8075, #9926f0);
   color: white;
-  padding: 50px 20px;
+  padding: 0px 0px 50px;
   position: relative;
   width: 100vw;
  height: 100vh;
 
 }
-.header-content {
+.hero-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 60px;
+  padding: 100px 0px 0px 0px;
 }
 
 /* Parte Esquerda */
-.header-left {
+.hero-left {
   max-width: 50%;
   margin-left: 120px;
 }
@@ -97,11 +97,14 @@
 
 
 /* Parte Direita */
-.header-right {
+.hero-right {
   width: 40%;
   height: 40%;
 }
-
+.heroimage {
+  width: 75%;
+  height: 75%;
+}
 /* ----- Wave Container ----- */
 .wave-container {
   position: absolute;

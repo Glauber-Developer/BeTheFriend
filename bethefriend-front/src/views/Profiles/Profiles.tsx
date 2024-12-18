@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import listavoluntario from "/img/lista-voluntarios.png";
-import star from "/img/star.png";
 import './Profiles.css';
 import MenuBarUser from "../../components/menu-bar/menu-bar-user.tsx";
 import axios from "axios";
@@ -19,6 +17,7 @@ interface User {
 const Profiles: React.FC = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState<User[]>([]);
+  const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
   const [filterType, setFilterType] = useState<"SENIOR" | "VOLUNTARIO">("SENIOR");
   const [filters, setFilters] = useState({
     city: "",
@@ -40,57 +39,28 @@ const Profiles: React.FC = () => {
         },
       });
       setUsers(response.data);
+      setFilteredUsers(response.data);
     } catch (error) {
       console.error("Erro ao buscar os usuários:", error);
     }
   };
 
-  const getUsers = async () => {
-    try {
-      const token = localStorage.getItem("token");
-
-      // Remove campos vazios dos filtros
-      const activeFilters = Object.fromEntries(
-        Object.entries(filters).filter(([, value]) => value)
-      );
-
-      const seniorsResponse = await axios.get("http://localhost:8081/users/seniors", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        params: activeFilters,
-      });
-
-      const volunteersResponse = await axios.get("http://localhost:8081/users/volunteers", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        params: activeFilters,
-      });
-
-      if (Array.isArray(seniorsResponse.data) && Array.isArray(volunteersResponse.data)) {
-        const allUsers = [...seniorsResponse.data, ...volunteersResponse.data];
-        const filteredUsers = allUsers.filter((user) => {
-          if (filterType === "SENIOR") {
-            return user.type === "VOLUNTARIO";
-          } else {
-            return user.type === "SENIOR";
-          }
-        });
-        setUsers(filteredUsers);
-      } else {
-        console.error("A resposta da API não é um array:", seniorsResponse.data, volunteersResponse.data);
-      }
-    } catch (error) {
-      console.error("Erro ao buscar usuários:", error);
-    }
+  const filterUsers = () => {
+    const filtered = users.filter((user) => {
+      const matchesType = user.type === filterType;
+      const matchesCity = filters.city ? user.city.toLowerCase().includes(filters.city.toLowerCase()) : true;
+      const matchesState = filters.state ? user.state.toLowerCase().includes(filters.state.toLowerCase()) : true;
+      const matchesSkills = filters.skills ? user.skills.includes(filters.skills) : true;
+      return matchesType && matchesCity && matchesState && matchesSkills;
+    });
+    setFilteredUsers(filtered);
   };
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFilters((prevFilters) => ({
       ...prevFilters,
-      [name]: value.toUpperCase(),
+      [name]: value,
     }));
   };
 
@@ -99,29 +69,26 @@ const Profiles: React.FC = () => {
     if (value.length <= 2) {
       setFilters((prevFilters) => ({
         ...prevFilters,
-        [name]: value.toUpperCase(),
+        [name]: value,
       }));
     }
   };
 
   useEffect(() => {
     getAllUsers();
-    getUsers();
-  }, [filterType]);
+  }, []);
+
+  useEffect(() => {
+    filterUsers();
+  }, [filterType, filters]);
 
   return (
-    <div className="total">
+    <div className="prof">
       <header className="menu-bar">
         <MenuBarUser />
       </header>
-
-      <div className="container">
-        <div className="image-section">
-          <img src={listavoluntario} alt="Background" className="background-image" />
-        </div>
-
-        <div className="filters-section">
-          <h2>Filtros</h2>
+      <div className="filters-section">
+        <h2>Filtros</h2>
           <select
             name="type"
             onChange={(e) => setFilterType(e.target.value as "SENIOR" | "VOLUNTARIO")}
@@ -149,7 +116,7 @@ const Profiles: React.FC = () => {
             name="country"
             placeholder="País"
             value={filters.country}
-            onChange={handleInput}
+            onChange={handleFilterChange}
           />
           {filterType === "VOLUNTARIO" && (
             <select
@@ -172,19 +139,18 @@ const Profiles: React.FC = () => {
                 "Artesanatos",
                 "Culinária",
               ].map((skill) => (
-                <option key={skill} value={skill.toUpperCase()}>
+                <option key={skill} value={skill}>
                   {skill}
                 </option>
               ))}
             </select>
           )}
-          <button onClick={getUsers}>Buscar</button>
-        </div>
-
-        <div className="list-section">
+      </div>
+          
+      <div className="list-section">
           <div className="user-list">
-            {users.length > 0 ? (
-              users.map((user) => (
+            {filteredUsers.length > 0 ? (
+              filteredUsers.map((user) => (
                 <div
                   className="user-box"
                   key={user.id}
@@ -194,13 +160,9 @@ const Profiles: React.FC = () => {
                   <div className="user-info">
                     <div className="user-name">{user.name}</div>
                     <div className="user-location">{user.city}, {user.state}</div>
-                    <div className="user-skills">{user.skills.join(", ")}</div>
                   </div>
-                  <div className="skills-count">
-                    <img src={star} className="icon-star" />
-                    <span>{user.skills.length}</span>
+                  <div className="user-skills">Interesses: {user.skills.join(", ")}</div>
                   </div>
-                </div>
               ))
             ) : (
               <p>Nenhum usuário encontrado.</p>
@@ -208,7 +170,6 @@ const Profiles: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

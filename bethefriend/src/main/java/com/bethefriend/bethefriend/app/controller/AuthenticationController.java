@@ -13,6 +13,7 @@ import com.bethefriend.bethefriend.infrastructure.repositories.UserRepository;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -32,13 +33,21 @@ public class AuthenticationController {
     @Autowired
     private TokenService tokenService;
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid AuthenticationDTO authenticationDTO) {
-        var userPassaword = new UsernamePasswordAuthenticationToken(authenticationDTO.email(), authenticationDTO.password());
-        var auth = this.authenticationManager.authenticate(userPassaword);
+    public ResponseEntity<?> login(@RequestBody AuthenticationDTO loginRequest) {
+    try {
+        var authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password())
+        );
 
-        var token = tokenService.generateToken((User)auth.getPrincipal());
+        var user = (User) authentication.getPrincipal();
+        String token = tokenService.generateToken(user);
+
         return ResponseEntity.ok(new LoginResponseDTO(token));
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário ou senha inválidos");
     }
+}
 
     @PostMapping("/register")
     public ResponseEntity<Long> register(@RequestBody @Valid RegisterDTO RegisterDTO) {

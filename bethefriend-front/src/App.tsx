@@ -6,7 +6,6 @@ import Login from './views/Login/Login';
 import MyProfile from './views/MyProfile/MyProfile';
 import Profiles from './views/Profiles/Profiles';
 import ScheduleActivities from './views/ScheduleActivities/ScheduleActivities';
-import User from './views/User/User';
 import Register from './views/Registration/Registration';
 import WhoWeAre from './views/WhoWeAre/WhoWeAre';
 
@@ -22,7 +21,6 @@ function App() {
             <Route path="/scheduleactivity/:userId" element={<ScheduleActivities></ScheduleActivities>}/>
             <Route path="/chat" element={<Chat></Chat>}/>
             <Route path="/profiles" element={<Profiles></Profiles>}/>
-            <Route path="/user" element={<User></User>}/>
             <Route path="/myprofile" element={<MyProfile></MyProfile>}/>
             <Route path="/whoweare" element={<WhoWeAre></WhoWeAre>}/>
         </Routes>
