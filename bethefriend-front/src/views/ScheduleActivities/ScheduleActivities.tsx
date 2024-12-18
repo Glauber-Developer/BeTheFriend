@@ -86,12 +86,12 @@ const ScheduleActivities: React.FC = () => {
       <header className="menu-bar">
         <MenuBarUser></MenuBarUser>
       </header>
-    <form onSubmit={handleSubmit}>
-      <div className="schedule-container">
+      <form onSubmit={handleSubmit}>
+      <div className="scheduleContainer">
         <div className="schedule-box">
-          <div className="header">
+          <div className="schedulehero">
             <span className="icon">👤</span>
-            <div className="header-text">
+            <div className="schedulehero-text">
               <h2>Agende atividade com</h2>
               <h3>Nome do Usuário</h3>
             </div>
@@ -127,41 +127,52 @@ const ScheduleActivities: React.FC = () => {
           </div>
 
           <div className="additional-info">
-            <label>Data</label>
-            <input
-              className="input"
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-            />
-
-            <label>Horário de Início</label>
-            <input
-              className="input"
-              type="time"
-              value={time}
-              onChange={(e) => setTime(e.target.value)}
-            />
-
-            <label>Local</label>
-            <select
-              className="input-local"
-              value={meetingType}
-              onChange={(e) => setMeetingType(e.target.value)}
-            >
-              <option value="Presencial">Presencial</option>
-              <option value="Virtual">Virtual</option>
-            </select>
-
-            <label>
-              {meetingType === "Virtual" ? "Link do Encontro" : "Local de Encontro"}
-            </label>
-            <input
-              className="input"
-              type="text"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            />
+            {/* - Line 3: date and hour - */}
+            <div className="rowschedule">
+              <div className="inputschedule">
+                <label>Data</label>
+                <input
+                  className="input-data"
+                  type="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                />
+              </div>
+              <div className="inputschedule">
+                <label>Horário de Início</label>
+                <input
+                  className="input"
+                  type="time"
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
+                />
+               </div> 
+            </div>
+            {/* - Linha 4: Local and type - */}
+              <div className="rowschedule">
+                <div className="inputschedule">
+                  <label>Local</label>
+                    <select
+                      className="input-local"
+                      value={meetingType}
+                      onChange={(e) => setMeetingType(e.target.value)}
+                    >
+                      <option value="Presencial">Presencial</option>
+                      <option value="Virtual">Virtual</option>
+                    </select>
+                </div>
+                <div className="inputschedule">
+                  <label>
+                    {meetingType === "Virtual" ? "Link do Encontro" : "Local de Encontro"}
+                  </label>
+                  <input
+                    className="input"
+                    type="text"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                  />
+                </div>
+              </div>
           </div>
         </div>
 
