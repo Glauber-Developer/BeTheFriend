@@ -12,13 +12,13 @@ const ScheduleActivities: React.FC = () => {
     navigate("/myprofile");
   };
 
-  
   const [title, setTitle] = useState<string>("");
   const [selectedOption, setSelectedOption] = useState<string>("");
   const [meetingType, setMeetingType] = useState<string>("Presencial");
   const [date, setDate] = useState<string>("");
   const [time, setTime] = useState<string>("");
   const [location, setLocation] = useState<string>("");
+  const [seniorId, setSeniorId] = useState<number | null>(null);
 
   const activityOptions = [
     "Tecnologia",
@@ -37,13 +37,33 @@ const ScheduleActivities: React.FC = () => {
 
   useEffect(() => {
     console.log("User ID from URL:", userId);
+    fetchSeniorId();
   }, [userId]);
 
-  
+  const fetchSeniorId = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Token de autenticação não encontrado. Por favor, faça login novamente.");
+        return;
+      }
+
+      const response = await axios.get(`http://localhost:8081/users/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setSeniorId(response.data.id);
+    } catch (error) {
+      console.error("Erro ao buscar ID do sênior:", error);
+      alert("Ocorreu um erro ao buscar o ID do sênior. Tente novamente.");
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!title || !selectedOption || !date || !time || !location) {
+    if (!title || !selectedOption || !date || !time || !location || !seniorId) {
       alert("Por favor, preencha todos os campos obrigatórios!");
       return;
     }
@@ -56,7 +76,7 @@ const ScheduleActivities: React.FC = () => {
       locationFormat: location,
       meetingLocation: meetingType,
       status: "Pendente",
-      senior: { id: 1 }, 
+      senior: { id: seniorId }, 
       voluntario: { id: parseInt(userId || "0") }, 
     };
     console.log("Activity Data:", activityData);
@@ -127,7 +147,6 @@ const ScheduleActivities: React.FC = () => {
           </div>
 
           <div className="additional-info">
-            {/* - Line 3: date and hour - */}
             <div className="rowschedule">
               <div className="inputschedule">
                 <label>Data</label>
@@ -148,7 +167,6 @@ const ScheduleActivities: React.FC = () => {
                 />
                </div> 
             </div>
-            {/* - Linha 4: Local and type - */}
               <div className="rowschedule">
                 <div className="inputschedule">
                   <label>Local</label>
