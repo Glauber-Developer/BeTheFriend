@@ -20,10 +20,10 @@ const HomeView: React.FC = () => {
               <MenuBar></MenuBar>
             </div>
           {/* HERO SECTION */}
-            <main className="header">
-              <div className="header-content">
+            <main className="hero">
+              <div className="hero-content">
                 {/* LEFT */}
-                <div className="header-left">
+                <div className="hero-left">
                   <h1 className="title">
                     Be <br />
                     The <br />
@@ -41,8 +41,8 @@ const HomeView: React.FC = () => {
                   </div>
                 </div>
                 {/* RIGHT */}
-                  <div className="header-right">
-                    <img src={logoimage} alt="Conexão entre gerações" className="image"/>
+                  <div className="hero-right">
+                    <img src={logoimage} alt="Conexão entre gerações" className="heroimage"/>
                   </div>
                 </div>
                 <div className="wave-container">
