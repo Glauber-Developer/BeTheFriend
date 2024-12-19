@@ -13,6 +13,9 @@ services:
       - SPRING_DATASOURCE_USERNAME=user
       - SPRING_DATASOURCE_PASSWORD=password
       - SPRING_APPLICATION_NAME=bethefriend
+      - SPRINGDOC_API_DOCS_ENABLED=true
+      - SPRINGDOC_SWAGGER_UI_ENABLED=true
+      - SPRINGDOC_SWAGGER_UI_PATH=/swagger-ui.html
     ports:
       - "8081:8081"
     depends_on:

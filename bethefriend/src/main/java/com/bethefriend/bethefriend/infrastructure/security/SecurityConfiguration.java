@@ -32,6 +32,11 @@ public class SecurityConfiguration {
                     .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                     .requestMatchers(HttpMethod.GET, "/users/type/SENIOR")
                     .hasRole("VOLUNTARIO")
+                    .requestMatchers(
+                        "/v3/api-docs/**",
+                                    "/swagger-ui/**",
+                                    "/swagger-ui.html"
+                    ).permitAll()
                     .anyRequest()
                     .authenticated()
                 )
